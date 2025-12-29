@@ -1,7 +1,3 @@
-"""
-Optimized Database Configuration Module
-"""
-
 import pymongo
 from pymongo import MongoClient
 from tkinter import messagebox
@@ -110,7 +106,7 @@ class OptimizedDatabaseManager:
         if not self.connect():
             return None
             
-        # Return cached collection or create new one
+        # Return cached collection 
         if collection_name not in self._collections:
             self._collections[collection_name] = self.db[COLLECTIONS[collection_name]]
             
@@ -138,7 +134,7 @@ class OptimizedDatabaseManager:
         self.get_collection.cache_clear()
 
 
-# Global optimized database manager instance
+
 db_manager = OptimizedDatabaseManager()
 
 
@@ -189,6 +185,5 @@ def test_connection():
 
 
 if __name__ == "__main__":
-    # Test the connection when run directly
-
     test_connection()
+
