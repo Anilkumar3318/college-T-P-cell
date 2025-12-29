@@ -70,7 +70,7 @@ class TP_Manager:
         self.setup_gui()
 
     def setup_gui(self):
-        # --- CUSTOM TITLE BAR ---
+
         self.title_bar = ctk.CTkFrame(self.root, height=30, fg_color="#2b2b2b", corner_radius=0)
         self.title_bar.pack(fill='x', side='top')
         self.title_bar.pack_propagate(False)
@@ -106,40 +106,35 @@ class TP_Manager:
                                      fg_color="transparent", hover_color="#E74C3C", **button_style)
         close_button.pack(side='left', padx=2)
 
-        # --- MAIN CONTENT FRAME ---
+        # MAIN CONTENT FRAME 
         self.main_frame = ctk.CTkFrame(self.root, fg_color=COLORS["content_frame"])
         self.main_frame.pack(fill='both', expand=True, padx=0, pady=0)
 
-        # --- TOP FRAME ---
+        # TOP FRAME 
         self.setup_top_frame()
 
-        # --- NAVIGATION FRAME ---
+        # NAVIGATION FRAME
         self.setup_navigation_frame()
 
-        # --- CONTENT FRAME ---
+        # CONTENT FRAME
         self.setup_content_frame()
-
-        # Show home page by default and select home button
         self.select_section('home')
 
     def setup_top_frame(self):
         # Keep frame height same as before
-        frame_height = max(140, int(self.root.winfo_screenheight() * 0.12))  # At least 140px or 12% of screen height
+        frame_height = max(140, int(self.root.winfo_screenheight() * 0.12)) 
         # Use white background to match logo
         self.page_option_frame = ctk.CTkFrame(master=self.main_frame, height=frame_height, corner_radius=10,
                                               fg_color="#FFFFFF")
         self.page_option_frame.pack(side='top', fill='x', padx=8, pady=3)
         self.page_option_frame.pack_propagate(False)
 
-        # Container frame for logo + title (centered together)
         header_container = ctk.CTkFrame(self.page_option_frame, fg_color="#FFFFFF", corner_radius=0)
         header_container.pack(expand=True, fill='both', padx=5, pady=2)
-
-        # Inner frame to hold logo and title side by side, centered
+        
         inner_frame = ctk.CTkFrame(header_container, fg_color="#FFFFFF", corner_radius=0)
         inner_frame.pack(expand=True, pady=2)
 
-        # Logo next to title (original size 130x130)
         try:
             img = Image.open(resource_path("mbs_logo.png"))
             img = img.resize((130, 130), Image.Resampling.LANCZOS)
@@ -173,12 +168,12 @@ class TP_Manager:
         # Navigation buttons with enhanced interactive styling
         nav_button_style = {
             "text_color": "white",
-            "font": ("Arial", 14, "normal"),  # Start with normal weight
+            "font": ("Arial", 14, "normal"),  #
             "width": 140,
             "height": 40,
             "corner_radius": 8,
             "fg_color": COLORS["button_default"],
-            "hover_color": COLORS["hover"],  # Nice hover effect
+            "hover_color": COLORS["hover"],
             "border_width": 2,
             "border_color": COLORS["nav_frame"]
         }
@@ -1217,4 +1212,5 @@ def start_app():
 
 
 if __name__ == "__main__":
+
     start_app()
