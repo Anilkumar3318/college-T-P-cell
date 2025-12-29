@@ -4,7 +4,6 @@ from PIL import Image, ImageTk
 import hashlib
 from utils import resource_path
 
-# --- COLOR CONFIGURATION ---
 COLORS = {
     "primary": "#1f6aa5",
     "secondary": "#2b2b2b",
@@ -18,7 +17,6 @@ COLORS = {
     "text_secondary": "#a0a0a0"
 }
 
-# Default credentials (In production, use database)
 DEFAULT_USERS = {
     "manager": hashlib.sha256("manager123".encode()).hexdigest()
 }
@@ -39,11 +37,11 @@ class LoginFrame:
         parent.bind('<Return>', lambda e: self.login())
 
     def setup_ui(self):
-        # Content frame - split into two sections
+        # Content frame 
         content_frame = ctk.CTkFrame(self.main_container, fg_color=COLORS["background"])
         content_frame.pack(fill='both', expand=True, padx=0, pady=0)
 
-        # Left side - Branding/Info (40% of screen width)
+        # Left side 
         screen_width = self.parent.winfo_screenwidth()
         left_width = int(screen_width * 0.4)
         left_frame = ctk.CTkFrame(content_frame, fg_color=COLORS["primary"], corner_radius=0, width=left_width)
@@ -58,7 +56,6 @@ class LoginFrame:
         try:
             img = Image.open(resource_path("mbs_logo.png"))
             img = img.resize((200, 200), Image.Resampling.LANCZOS)
-            # Use CTkImage instead of ImageTk.PhotoImage to fix the warning
             ctk_image = ctk.CTkImage(light_image=img, dark_image=img, size=(200, 200))
             logo_label = ctk.CTkLabel(branding_container, image=ctk_image, text="")
             logo_label.pack(pady=30)
@@ -196,7 +193,6 @@ class LoginFrame:
         # Check credentials
         if username in DEFAULT_USERS and DEFAULT_USERS[username] == hashed_password:
             messagebox.showinfo("Login Successful", f"Welcome, {username}!")
-            # Destroy login frame and call success callback
             self.main_container.destroy()
             self.on_success_callback(username)
         else:
@@ -204,4 +200,5 @@ class LoginFrame:
                                  "Invalid username or password!\n\nPlease check your credentials and try again.")
             self.password_entry.delete(0, 'end')
             self.password_entry.focus()
+
 
