@@ -8,10 +8,10 @@ from tkinter import messagebox
 import threading
 from functools import lru_cache
 
-MONGO_URI = "mongodb+srv://TPinfo:TPinfo321@tpinfo.1cqjp8g.mongodb.net/?appName=TPinfo"
+MONGO_URI = "DATABASE URI"
 DATABASE_NAME = "TPinfo"
 
-OFFER_LETTERS_URI = "mongodb+srv://Tp_offer_letter:TPoffer123@offerletters.axpsntb.mongodb.net/?appName=Offerletters"
+OFFER_LETTERS_URI = "DATABASE URI"
 OFFER_LETTERS_DB_NAME = "offer_letters"
 
 COLLECTIONS = {
@@ -190,4 +190,5 @@ def test_connection():
 
 if __name__ == "__main__":
     # Test the connection when run directly
+
     test_connection()
